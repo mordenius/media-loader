@@ -1,0 +1,41 @@
+{
+  "name": "am-backend",
+  "version": "0.1.0-beta",
+  "description": "",
+  "main": "build/bundle.min.js",
+  "scripts": {
+    "test": "jest --runInBand --config ./jest.config.js",
+    "babel-node": "babel-node ./src/feature/index.ts --extensions \".ts\"",
+    "dev": "nodemon --exec npm run babel-node --inspect ./src/ts/index.ts ",
+    "clear-temp": "rimraf ./temp/*"
+  },
+  "keywords": [],
+  "author": "BBT",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/ffmpeg": "^1.0.0",
+    "@types/jest": "^24.0.19",
+    "@types/node": "^12.11.2",
+    "@types/sharp": "^0.23.0",
+    "babel-loader": "^8.0.6",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "ffmpeg": "0.0.4",
+    "sharp": "^0.23.1"
+  }
+}
