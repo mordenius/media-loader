@@ -2,8 +2,8 @@
 
 - Сохранение медиа файлов, перечисленных форматов _(CONTENT_EXTENSION)_
 - Создание превью изображения для сохраняемых файлов
-- Предварительная настройка:
-	- Разрешения превью изображений
+- Предварительная настройка: 
+	- Разрешения превью изображений 
 	- Путей к директориям для сохранения файлов
 
 ### Внешний интерфейс
@@ -36,7 +36,7 @@ type IUploader = (source: Readable, name: string, ext: CONTENT_EXTENSION) => Pro
 import { createReadStream } from "fs";
 import { getUploader } from "./uploader";
 
-const source = createReadStream(process.cwd() + "/temp/1.jpg");
+const source = createReadStream(process.cwd() + "/temp/1.jpeg");
 
 const upload: IUploader = getUploader({
 	thumbnail: {
@@ -49,15 +49,13 @@ const upload: IUploader = getUploader({
 });
 
 upload(source, "some-name", CONTENT_EXTENSION.JPEG)
-	.then(
-		(meta: IMetadata): void => {
-			console.log(`
+	.then((meta: IMetadata): void => {
+		console.log(`
 			width: ${meta.width}, 
 			height: ${meta.height},
 			duration: ${meta.duration} 
 		`);
-		}
-	)
+	})
 	.catch((err: Error): void => {
 		console.log(err.message);
 	});
