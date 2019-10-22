@@ -36,8 +36,6 @@ type IUploader = (source: Readable, name: string, ext: CONTENT_EXTENSION) => Pro
 import { createReadStream } from "fs";
 import { getUploader } from "./uploader";
 
-const source = createReadStream(process.cwd() + "/temp/1.jpeg");
-
 const upload: IUploader = getUploader({
 	thumbnail: {
 		width: 120
@@ -47,6 +45,8 @@ const upload: IUploader = getUploader({
 		thumbnail: `${process.cwd()}/temp/thumbnail/`
 	}
 });
+
+const source = createReadStream(process.cwd() + "/temp/1.jpeg");
 
 upload(source, "some-name", CONTENT_EXTENSION.JPEG)
 	.then((meta: IMetadata): void => {
@@ -59,4 +59,19 @@ upload(source, "some-name", CONTENT_EXTENSION.JPEG)
 	.catch((err: Error): void => {
 		console.log(err.message);
 	});
+	
+const source = createReadStream(process.cwd() + "/temp/1.mp4");
+
+upload(source, "some-name", CONTENT_EXTENSION.MP4)
+	.then((meta: IMetadata): void => {
+		console.log(`
+			width: ${meta.width}, 
+			height: ${meta.height},
+			duration: ${meta.duration} 
+		`);
+	})
+	.catch((err: Error): void => {
+		console.log(err.message);
+	});
+```
 ```
