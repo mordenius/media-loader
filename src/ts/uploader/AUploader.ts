@@ -1,7 +1,7 @@
 import { Readable } from "stream";
-import { IUploader, IMetadata } from "./UploaderFactory";
+import { IMetadata } from "./_interfaces";
 
-export abstract class AUploader implements IUploader {
+export abstract class AUploader {
 	protected readonly _source: Readable;
 
 	protected _originPath: string = `${process.cwd()}/temp/`;
