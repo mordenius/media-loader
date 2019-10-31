@@ -47,7 +47,6 @@ class ThembnailCreator {
 	};
 
 	private _onError = (err: Error): void => {
-		console.log("-------");
 		console.log(err.message);
 	};
 }

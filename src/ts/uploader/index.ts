@@ -12,8 +12,7 @@ export function getUploader({ routes: { origin } }: { routes: { origin: string }
 			case CONTENT_EXTENSION.JPEG:
 				return factory.getImageUploader(source, name, ext)(source, name, ext);
 			case CONTENT_EXTENSION.MP4:
-				throw new Error(`Not implemented`);
-
+				return factory.getVideoUploader(source, name, ext)(source, name, ext);
 			default:
 				throw new Error(`Unsupported file extension`);
 		}

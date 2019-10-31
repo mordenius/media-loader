@@ -17,6 +17,7 @@
 /public/
 /docs/
 /existent/
+/ffmpeg/
 
 # Environment
 .env
