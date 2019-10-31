@@ -12,29 +12,34 @@ import { createWriteStream } from "fs";
 // }
 
 export interface IMetadata {
-	width: number;
-	height: number;
-	duration: number;
+  width: number;
+  height: number;
+  duration: number;
 }
 
 export interface IUploaderFactory {
-	getImageUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader;
-	// getVideoUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader;
+  getImageUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader;
+  // getVideoUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader;
 }
 
 export class UploaderFactory implements IUploaderFactory {
-	public getImageUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader {
-		return async (source: Readable, filename: string, ext: CONTENT_EXTENSION): Promise<IMetadata> => {
-			const imageLoader = new ImageUploader(source, filename + "." + ext);
+  public getImageUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader {
+    return async (source: Readable, filename: string, ext: CONTENT_EXTENSION): Promise<IMetadata> => {
+      try {
+        const imageLoader = new ImageUploader(source, filename + "." + ext);
 
-			await imageLoader.saveOrigin();
-			// await imageLoader.createAndSaveThumbnail();
+        await imageLoader.saveOrigin();
+        return imageLoader.metadata;
+      } catch (err) {
+        console.log("------------- !!")
+      }
+      // await imageLoader.createAndSaveThumbnail();
+      const imageLoader = new ImageUploader(source, filename + "." + ext);
+      return imageLoader.metadata;
+    };
+  }
 
-			return imageLoader.metadata;
-		};
-	}
-
-	// public getVideoUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader {
-	// 	// return new VideoUploader(source, filename);
-	// }
+  // public getVideoUploader(source: Readable, filename: string, ext: CONTENT_EXTENSION): IUploader {
+  // 	// return new VideoUploader(source, filename);
+  // }
 }
