@@ -25,5 +25,5 @@ export abstract class AUploader {
 	}
 
 	public abstract saveOrigin(): Promise<void>;
-	public abstract createAndSaveThumbnail(): Promise<void>;
+	public abstract saveImgOriginAndThumbnail(): Promise<void>;
 }

@@ -20,7 +20,7 @@ describe("Not implemented", (): void => {
 	const upload: IUploader = getUploader(CONFIG);
 
 	const destinationName = "some-name";
-	describe("Images", () => {
+	xdescribe("Images", () => {
 		const extension = CONTENT_EXTENSION.JPEG;
 
 		let source: Readable;
@@ -35,26 +35,22 @@ describe("Not implemented", (): void => {
 			});
 		});
 
-		xit("returned value", (): void => {
+		it("returned value", (): void => {
 			expect(typeof metadata.width).toBe("number");
 			expect(typeof metadata.height).toBe("number");
 			expect(metadata.duration).toBe(ZERO_DURATION);
 		});
 
-		xit("origin file is saved", (): void => {
+		it("origin file is saved", (): void => {
 			const fileFullPath = CONFIG.routes.origin + destinationName + "." + extension;
 			const isExist: boolean = existsSync(fileFullPath);
 			expect(isExist).toBeTruthy();
 		});
-
-		it("creating thumbnail", (): void => {
-			
-		})
 	});
 
-	xdescribe("Video", (): void => {
+	describe("Video", (): void => {
 		const source = createReadStream(PATH_VIDEO);
-		xit("--", (done: () => void): void => {
+		it("Video metadata", (done: () => void): void => {
 			upload(source, destinationName, CONTENT_EXTENSION.MP4).then((meta: IMetadata): void => {
 				expect(typeof meta.width).toBe("number");
 				expect(typeof meta.height).toBe("number");
@@ -64,7 +60,7 @@ describe("Not implemented", (): void => {
 		});
 
 		it("Cheking file exist", (done: () => void): void => {
-			expect(!existsSync(PATH_IMG)).toBeFalsy();
+			expect(!existsSync(PATH_VIDEO)).toBeFalsy();
 			done();
 		});
 	});

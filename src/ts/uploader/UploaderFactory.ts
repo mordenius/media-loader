@@ -25,7 +25,7 @@ export class UploaderFactory implements IUploaderFactory {
 		return async (source: Readable, filename: string, ext: CONTENT_EXTENSION): Promise<IMetadata> => {
 			const imageLoader = new ImageUploader(source, filename + "." + ext);
 			await imageLoader.saveOrigin();
-			await imageLoader.createAndSaveThumbnail();
+			// await imageLoader.createAndSaveThumbnail();
 			return imageLoader.metadata;
 		};
 	}
